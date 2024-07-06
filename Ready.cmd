@@ -1,0 +1,1 @@
+gradlew clean build && cd C:\Users\Administrator\IdeaProjects\shopping\shopping-cart-starter\build\libs\ && move .\eshoppers-1.0-SNAPSHOT.war shop.war && copy .\shop.war C:\apache-tomcat-9.0.89\webapps

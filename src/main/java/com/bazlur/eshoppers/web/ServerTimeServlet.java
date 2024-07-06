@@ -1,4 +1,4 @@
-package com.bazlur.shoppingcart.web;
+package com.bazlur.eshoppers.web;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
