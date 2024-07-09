@@ -1,4 +1,6 @@
-package com.bazlur.eshoppers.web;
+package com.bazlur.service;
+
+import com.bazlur.dto.ProductDTO;
 
 import java.util.List;
 

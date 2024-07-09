@@ -1,5 +1,10 @@
 package com.bazlur.eshoppers.web;
 
+import com.bazlur.dto.ProductDTO;
+import com.bazlur.repository.DummyProductRepositoryImpl;
+import com.bazlur.service.ProductService;
+import com.bazlur.service.ProductServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -1,5 +1,9 @@
 package com.bazlur.eshoppers.web;
 
+import com.bazlur.dto.ProductDTO;
+import com.bazlur.repository.ProductRepository;
+import com.bazlur.service.ProductService;
+import com.bazlur.service.ProductServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.bazlur.eshoppers.web;
+package com.bazlur.dto;
 
 import java.math.BigDecimal;
 

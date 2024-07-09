@@ -1,4 +1,7 @@
-package com.bazlur.eshoppers.web;
+package com.bazlur.service;
+
+import com.bazlur.dto.ProductDTO;
+import com.bazlur.repository.ProductRepository;
 
 import java.util.Comparator;
 import java.util.List;
