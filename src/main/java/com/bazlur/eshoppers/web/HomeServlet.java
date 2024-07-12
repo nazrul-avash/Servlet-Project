@@ -4,7 +4,6 @@ import com.bazlur.dto.ProductDTO;
 import com.bazlur.repository.DummyProductRepositoryImpl;
 import com.bazlur.service.ProductService;
 import com.bazlur.service.ProductServiceImpl;
-import org.slf4j.ILoggerFactory;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
