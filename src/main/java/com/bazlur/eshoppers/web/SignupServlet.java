@@ -4,6 +4,8 @@ import com.bazlur.dto.UserDTO;
 import com.bazlur.eshoppers.domain.UserRepositoryImpl;
 import com.bazlur.service.UserService;
 import com.bazlur.service.UserServiceImpl;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @WebServlet("/signup")
 public class SignupServlet extends HttpServlet {
@@ -48,6 +53,20 @@ public class SignupServlet extends HttpServlet {
         return userDTO;
     }
     private boolean isValid(UserDTO userDTO){
-        return true;
+        var validationFactory = Validation.buildDefaultValidatorFactory();
+        var validator = validationFactory.getValidator();
+        Set<ConstraintViolation<UserDTO>> violations = validator.validate(userDTO);
+        Map<String, String> errors = new HashMap<>();
+        for(ConstraintViolation<UserDTO> violation: violations){
+            String path = violation.getPropertyPath().toString();
+            if(errors.containsKey(path)){
+                String errorMessage = errors.get(path);
+                errors.put(path,errorMessage+"<br/>"+violation.getMessage());
+            }
+            else {
+                errors.put(path,violation.getMessage());
+            }
+        }
+        return errors;
     }
 }

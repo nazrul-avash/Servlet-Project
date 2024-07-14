@@ -1,9 +1,22 @@
 package com.bazlur.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class UserDTO {
+    @NotEmpty
+    @Size(min = 4, max = 32)
     private String username;
+    @NotEmpty
+    @Size(min = 6, max = 16)
     private String password;
+    @NotEmpty
+    @Size(min = 6, max = 16)
     private String passwordConfirmed;
+    @NotEmpty
+    @Size(min = 4, max = 64)
+    @Email
     private String email;
 
     public String getPasswordConfirmed() {
@@ -13,8 +26,11 @@ public class UserDTO {
     public void setPasswordConfirmed(String passwordConfirmed) {
         this.passwordConfirmed = passwordConfirmed;
     }
-
+    @NotEmpty
+    @Size(min = 1, max = 32)
     private String firstName;
+    @NotEmpty
+    @Size(min = 1, max = 32)
     private String lastName;
 
     public String getUsername() {

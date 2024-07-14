@@ -59,10 +59,20 @@
 
         <hr class="mb-4">
         <div class="form-group">
-            <button class="btn btn-primary btn-lg" type="submit">Signup
+            <button class="btn btn-primary btn-lg" type="submit" onclick="validatePassword()">Signup
             </button>
         </div>
     </form>
+    <script type="text/javascript">
+        function validatePassword(){
+            var password = document.getElementsByName("password").value;
+            var confirmPassword = document.getElementById("passwordConfirmed").value;
+            if(password !== confirmPassword){
+                alert("Passwords do not match.")
+            }
+            return true;
+        }
+    </script>
 </div>
 
 
