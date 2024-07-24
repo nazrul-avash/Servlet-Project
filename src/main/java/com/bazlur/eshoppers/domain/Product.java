@@ -1,22 +1,33 @@
-package com.bazlur.dto;
+package com.bazlur.eshoppers.domain;
 
 import java.math.BigDecimal;
 
-public class ProductDTO {
-    Long id;
+public class Product {
+    private Long id;
     private String name;
     private String description;
     private BigDecimal price;
-
-    public ProductDTO(Long id,String name, String description, BigDecimal price) {
+    public Product(Long id, String name, String description,BigDecimal price){
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -33,17 +44,5 @@ public class ProductDTO {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

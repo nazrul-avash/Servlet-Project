@@ -40,15 +40,24 @@ public class SignupServlet extends HttpServlet {
         var errors = ValidationUtil.getInstance().validate(userDTO);
         logs.info(errors.getClass().toString());
         logs.info(errors.toString());
-        if(errors.isEmpty()){
-            logs.info("user is valid, creating a new user with: {}",userDTO);
-            userService.saveUser(userDTO);
-            resp.sendRedirect("/shop/home");
-        }
-        else{
+        if(!errors.isEmpty()){
             logs.info("user sent invalid data: {}",userDTO);
+            req.setAttribute("userDto",userDTO);
             req.setAttribute("errors",errors);
             req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req,resp);
+
+        }
+        else if(userService.isNotUniqueUsername(userDTO)){
+           logs.info("username: {} is already exist",userDTO.getUsername());
+           errors.put("username","The username already exists");
+           req.setAttribute("errors",errors);
+            req.setAttribute("userDto",userDTO);
+           req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req,resp);
+        }
+        else {
+            logs.info("user is valid, creating a new user with: {}",userDTO);
+            userService.saveUser(userDTO);
+            resp.sendRedirect("/login");
         }
     }
     private UserDTO copyParametersTo(HttpServletRequest req){

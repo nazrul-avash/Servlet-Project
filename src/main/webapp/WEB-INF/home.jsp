@@ -1,7 +1,7 @@
 
 <%@include file="includes/header.jsp" %>
 <%@include file="includes/navigation.jsp" %>
-
+<%@ taglib prefix="sec" uri="https://bazlur.com/functions"%>
 <div class="container">
     <div class="jumbotron">
         <h1>Welcome to e-shoppers! </h1>
@@ -33,5 +33,15 @@
         </c:forEach>
     </div>
 </div>
+<div class="jumbotron">
+    <c:if test="${sec:isAuthenticated(pageContext.request)}">
+        <h1>Hello
+            <c:out value="${sec:getCurrentUser(pageContext.request).firstName}"/>, welcome to e-Shoppers!
+        </h1>
+    </c:if>
+    <img src="<c:url value="/image/cart.jpg"/>" style="height: 200px" alt=""/>
 
+
+
+</div>
 <%@include file="includes/footer.jsp" %>

@@ -1,6 +1,7 @@
 package com.bazlur.service;
 
 import com.bazlur.dto.ProductDTO;
+import com.bazlur.eshoppers.domain.Product;
 import com.bazlur.repository.ProductRepository;
 
 import java.util.Comparator;
@@ -14,6 +15,12 @@ public class ProductServiceImpl implements ProductService{
     }
     @Override
     public List<ProductDTO> findAllProductSortedByName() {
-        return productRepository.findAllProducts().stream().sorted(Comparator.comparing(ProductDTO::getName)).collect(Collectors.toList());
+        return productRepository.findAllProducts().stream().map(this::convertToDTO).sorted(Comparator.comparing(ProductDTO::getName)).collect(Collectors.toList());
+    }
+    private ProductDTO convertToDTO (Product product){
+        product.getId();
+        product.getDescription();
+        product.getPrice();
+        product.getName();
     }
 }

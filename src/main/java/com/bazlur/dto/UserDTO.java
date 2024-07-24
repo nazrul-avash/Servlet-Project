@@ -1,10 +1,12 @@
 package com.bazlur.dto;
 
 
+import com.bazlur.service.PasswordEqual;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
+@PasswordEqual(first = "password", second = "passwordConfirmed",message = "Passwords do not match")
 public class UserDTO {
     @NotEmpty
     @Size(min = 4, max = 32)
