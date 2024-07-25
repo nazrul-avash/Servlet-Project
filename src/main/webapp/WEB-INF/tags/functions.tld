@@ -3,7 +3,7 @@
         xsi:schemaLocation = "http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd" version="2.0">
     <tlib-version>1.0</tlib-version>
     <short-name>ln</short-name>
-<!--    <uri>http://bazlur.com/functions</uri>-->
+    <uri>http://bazlur.com/functions</uri>
     <function>
         <name>getCurrentUser</name>
         <function-class>com.bazlur.service.SecurityContext</function-class>

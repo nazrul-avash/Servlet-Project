@@ -1,7 +1,7 @@
 
 <%@include file="includes/header.jsp" %>
 <%@include file="includes/navigation.jsp" %>
-<%@ taglib prefix="sec" uri="https://bazlur.com/functions"%>
+<%@ taglib prefix="sec" uri="http://bazlur.com/functions"%>
 <div class="container">
     <div class="jumbotron">
         <h1>Welcome to e-shoppers! </h1>
@@ -21,17 +21,16 @@
                             <c:out value="${product.description}"/>
                         </p>
                         <p class="card-text">
-                            Price: $ <c:out value="${product.price}"/>
+                            <c:out value="${product.price}"/>
                         </p>
-
-                        <a href="#" class="card-link btn btn-outline-info">
-                            Add toCart
-                        </a>
+                        <a href="#" class="card-link btn btn-outline-info" onclick="addToCart(${product.id})">Add to Cart</a>
+                        <form style="visibility: hidden" id ="addToCart_${product.id}" method="post" action="<c:url value="/add-to-cart?productId=${product.id}"/> "></form>
                     </div>
                 </div>
             </div>
         </c:forEach>
     </div>
+
 </div>
 <div class="jumbotron">
     <c:if test="${sec:isAuthenticated(pageContext.request)}">
@@ -44,4 +43,12 @@
 
 
 </div>
+
+<script>
+    function addToCart (productId){
+        let form = document.getElementById("addToCart_"+ productId);
+        form.submit();
+    }
+
+</script>
 <%@include file="includes/footer.jsp" %>

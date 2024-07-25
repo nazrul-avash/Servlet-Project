@@ -23,9 +23,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOGGER.info("Logging on");
-        for(int i  = 0; i<1000;i++){
-           LOGGER.info("Dummy Log");
-        }
+
         List<ProductDTO> allProducts= productService.findAllProductSortedByName();
         req.setAttribute("products",allProducts);
         req.getRequestDispatcher("/WEB-INF/home.jsp").forward(req,resp);

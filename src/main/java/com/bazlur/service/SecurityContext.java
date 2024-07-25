@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class SecurityContext {
-    public static final String AUTHENTICATION_KEY = "auth.key";
+    public static final String AUTHENTICATION_KEY = "auth.Key";
     public static void login(HttpServletRequest req, User user){
         HttpSession oldSession = req.getSession(false);
         if(oldSession != null ){

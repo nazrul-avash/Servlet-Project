@@ -18,9 +18,10 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.findAllProducts().stream().map(this::convertToDTO).sorted(Comparator.comparing(ProductDTO::getName)).collect(Collectors.toList());
     }
     private ProductDTO convertToDTO (Product product){
-        product.getId();
-        product.getDescription();
-        product.getPrice();
-        product.getName();
+       return new ProductDTO( product.getId(),
+               product.getName(),
+               product.getDescription(),
+               product.getPrice()
+       );
     }
 }

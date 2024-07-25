@@ -1,6 +1,7 @@
 package com.bazlur.eshoppers.web;
 
 import com.bazlur.dto.ProductDTO;
+import com.bazlur.eshoppers.domain.Product;
 import com.bazlur.repository.ProductRepository;
 import com.bazlur.service.ProductService;
 import com.bazlur.service.ProductServiceImpl;
@@ -15,8 +16,8 @@ import static org.mockito.Mockito.when;
 
 
 public class ProductServiceImplTest {
-private static final ProductDTO APPLE_IPAD = new ProductDTO("Apple iPad","Apple 35GB ipad", BigDecimal.valueOf(369.99));
-private static final ProductDTO HEADPHONE    = new ProductDTO("Kinera","an Iem to float", BigDecimal.valueOf(5338.22));
+private static final Product APPLE_IPAD = new Product(1L,"Apple iPad","Apple 35GB ipad", BigDecimal.valueOf(369.99));
+private static final Product HEADPHONE    = new Product(2L,"Kinera","an Iem to float", BigDecimal.valueOf(5338.22));
 private ProductRepository productRepository;
 private ProductService productService;
 
