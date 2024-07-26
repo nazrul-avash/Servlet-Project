@@ -20,7 +20,7 @@ public class AuthFilter implements Filter {
             chain.doFilter(request,response);
         }
         else {
-            ((HttpServletResponse)response).sendRedirect("/login");
+            ((HttpServletResponse)response).sendRedirect("/shop/login");
         }
     }
 }

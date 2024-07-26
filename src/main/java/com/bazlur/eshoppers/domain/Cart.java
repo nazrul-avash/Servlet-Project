@@ -7,8 +7,20 @@ import java.util.Set;
 public class Cart {
     private Long id;
     private Set<CartItem> carItems = new HashSet<>();
+
+
+
     private BigDecimal totalPrice;
     private User user;
+    private Integer totalItem;
+
+    public Integer getTotalItem() {
+        return totalItem;
+    }
+
+    public void setTotalItem(Integer totalItem) {
+        this.totalItem = totalItem;
+    }
 
     public Long getId() {
         return id;
@@ -34,7 +46,7 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
-   private User getUser() {
+   public User getUser() {
         return user;
     }
 

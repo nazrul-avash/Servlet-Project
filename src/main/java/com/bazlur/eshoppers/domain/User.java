@@ -1,5 +1,7 @@
 package com.bazlur.eshoppers.domain;
 
+import java.util.Objects;
+
 public class User {
     private String username;
     private String password;
@@ -47,5 +49,16 @@ public class User {
         this.lastName = lastName;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass()!=obj.getClass()) return false;
+        User user = (User) obj;
+        return username.equals(user.username);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(username);
+    }
 }
