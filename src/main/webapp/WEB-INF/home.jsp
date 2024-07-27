@@ -30,6 +30,27 @@
                             <p>
                                 Total Price: $ <c:out value="${cart.totalPrice}"/>
                             </p>
+                            <p><a class="btn btn-outline-info"
+                                  href="<c:url value="/checkout"/>">Checkout </a>
+                            </p>
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+            <div class="col-6 mb-4">
+                <c:if test="${cart != null && cart.cartItems.size() > 0}">
+                    <div class="card shadow-sm p-3 mb-5 bg-white">
+                        <div class="card-header">
+                            <h4> Your Cart</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                Total Item: <span class='badge badge-pill badge-success'>
+                                        <c:out value="${cart.totalItem}"/> </span>
+                            </p>
+                            <p>
+                                Total Price: $ <c:out value="${cart.totalPrice}"/>
+                            </p>
                             <p><a class="btn btn-outline-info" href="#">Checkout </a></p>
                         </div>
                     </div>
@@ -67,7 +88,13 @@
         </c:forEach>
     </div>
 </div>
-
+<div class="row">
+    <c:if test="${message != null}">
+        <div class="alert alert-success">
+                ${message}
+        </div>
+    </c:if>
+</div>
 <script>
     function addToCart(productId) {
         let form = document.getElementById("addToCart_" + productId);

@@ -1,5 +1,11 @@
 package com.bazlur.eshoppers.domain;
 
+import com.bazlur.eshoppers.CartItemRepositoryImpl;
+import com.bazlur.repository.ProductRepositoryImpl;
+import com.bazlur.service.CartRepositoryImpl;
+import com.bazlur.service.CartService;
+import com.bazlur.service.CartServiceImpl;
+
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -53,6 +59,7 @@ public class Cart {
     public void setUser(User user) {
        this.user = user;
     }
+    private  CartServiceImpl cartService = new CartServiceImpl(new CartRepositoryImpl(),new ProductRepositoryImpl(),new CartItemRepositoryImpl());
 
 
 

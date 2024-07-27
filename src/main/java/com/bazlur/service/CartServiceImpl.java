@@ -31,22 +31,47 @@ public class CartServiceImpl implements CartService{
         return cartRepository.save(cart);
     }
     public void addProductToCart(String productId, Cart cart){
+        Product product = findProduct(productId);
+        addProductToCart(product,cart);
+        updateCart(cart);
+    }
+    public void removeProductToCart(String productId, Cart cart){
+        Product product = findProduct(productId);
+        removeProductToCart(product,cart);
+        updateCart(cart);
+    }
+    private Product findProduct(String productId){
         if (productId == null || productId.length()==0){
-            throw new IllegalArgumentException("Product Id cannot be null");
+            throw new IllegalArgumentException("Product id cannot be null");
         }
         Long id = parseProductId(productId);
-        var product = productRepository.findById(id).orElseThrow(()->new ProductNotFoundException("Product not found by id: "+id));
-        addProductToCart(product,cart);
-        Integer totalTotalItem = getTotalItem(cart);
+        return productRepository.findById(id).orElseThrow(()->new ProductNotFoundException("Product not found by id: " +id));
+    }
+    private void updateCart(Cart cart){
+        Integer totaltotalItem = getTotalItem(cart);
         BigDecimal totalPrice = calculateTotalPrice(cart);
-        cart.setTotalItem(totalTotalItem);
+        cart.setTotalItem(totaltotalItem);
         cart.setTotalPrice(totalPrice);
-        cartRepository.save(cart);
+        cartRepository.update(cart);
     }
     private void addProductToCart(Product product, Cart cart){
         var cartItemOptional = findSimilarProductInCart(cart,product);
         var cartItem = cartItemOptional.map(this::increaseQuantityByOne).orElseGet(()->createNewShoppingCartItem(product));
         cart.getCarItems().add(cartItem);
+    }
+    public void removeProductToCart(Product productToRemove, Cart cart){
+        var itemOptional = cart.getCarItems().stream().filter(cartItem -> cartItem.getProduct().equals(productToRemove)).findAny();
+        var cartItem = itemOptional.orElseThrow(()->new CartItemNotFoundException("Cart not found by product: "+productToRemove));
+        if(cartItem.getQuantity()>1){
+            cartItem.setQuantity(cartItem.getQuantity()-1);
+            cartItem.setPrice(cartItem.getPrice().subtract(productToRemove.getPrice()));
+            cart.getCarItems().add(cartItem);
+            cartItemRepository.update(cartItem);
+        }
+        else {
+            cart.getCarItems().remove(cartItem);
+            cartItemRepository.remove(cartItem);
+        }
     }
     private CartItem createNewShoppingCartItem(Product product){
         var cartItem = new CartItem();

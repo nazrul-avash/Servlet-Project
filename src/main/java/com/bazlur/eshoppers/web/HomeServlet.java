@@ -29,6 +29,10 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOGGER.info("Logging on");
+        final String attribute = req.getParameter("orderSuccess");
+        if(attribute != null && Boolean.parseBoolean(attribute)){
+            req.setAttribute("message","Congratulation!, Order Successful");
+        }
 
         List<ProductDTO> allProducts= productService.findAllProductSortedByName();
         if (SecurityContext.isAuthenticated(req)) {

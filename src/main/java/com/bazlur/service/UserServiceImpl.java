@@ -2,9 +2,11 @@ package com.bazlur.service;
 
 import com.bazlur.dto.LoginDTO;
 import com.bazlur.dto.UserDTO;
+import com.bazlur.eshoppers.CartItemRepositoryImpl;
 import com.bazlur.eshoppers.domain.User;
 import com.bazlur.eshoppers.domain.UserRepository;
 import com.bazlur.eshoppers.domain.UserRepositoryImpl;
+import com.bazlur.repository.ProductRepositoryImpl;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -60,6 +62,7 @@ public class UserServiceImpl implements UserService{
     }
     @Override
     public User verifyUser(LoginDTO loginDTO){
+
         var user = userRepository.findByUsername(loginDTO.getUsername()).orElseThrow(()->new UserNotFoundException("User not found"+loginDTO.getUsername()));
         var encrypted = encryptPassword(loginDTO.getPassword());
         if(user.getPassword().equals(encrypted)){
@@ -69,4 +72,5 @@ public class UserServiceImpl implements UserService{
             throw new UserNotFoundException("Incorrect Password");
         }
     }
+
 }
